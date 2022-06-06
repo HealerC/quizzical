@@ -1,16 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <section>
         <h1>Quizzical</h1>
         <p>Trivial questions for you :-)</p>
-        <button>Begin</button>
-        <Link to="/" className="btn blue">
-          Begin
-        </Link>
+        <button onClick={() => navigate("/settings")}>Begin</button>
       </section>
       <aside>
         <table>
