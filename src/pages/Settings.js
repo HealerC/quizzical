@@ -1,5 +1,6 @@
 import React from "react";
 import Loading from "../components/Loading";
+import { createGame } from "../components/controllers";
 
 const API_BASE_URL = "https://opentdb.com/api.php";
 
@@ -33,7 +34,9 @@ const Settings = () => {
       if (result.response_code !== 0) {
         throw new Error("There was an error in response");
       }
-      console.log(result);
+      //console.log(result);
+      const game = createGame(result.results);
+      console.log(game);
     } catch (error) {
       console.error(error);
     }
