@@ -1,12 +1,14 @@
 import React from "react";
+import { nanoid } from "nanoid";
 import Question from "../components/Question";
 
 const Game = ({ game }) => {
-  console.log(game);
   return (
     <section>
       Game
-      {JSON.stringify(game)}
+      {game.game.map((question) => (
+        <Question key={nanoid()} trivia={question} />
+      ))}
       <button>Check answers</button>
     </section>
   );
