@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "../components/Loading";
 
 const Settings = () => {
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   return (
     <section>
       <form>
