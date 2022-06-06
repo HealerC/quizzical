@@ -1,6 +1,6 @@
 import React from "react";
 
-const StartGameSettings = () => {
+const Settings = () => {
   return (
     <form>
       <label for="username">User:</label>
@@ -28,4 +28,4 @@ const StartGameSettings = () => {
   );
 };
 
-export default StartGameSettings;
+export default Settings;

@@ -1,13 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const WelcomeScreen = () => {
+const Home = () => {
   return (
     <>
-      <main>
+      <section>
         <h1>Quizzical</h1>
         <p>Trivial questions for you :-)</p>
         <button>Begin</button>
-      </main>
+        <Link to="/" className="btn blue">
+          Begin
+        </Link>
+      </section>
       <aside>
         <table>
           <tr>
@@ -33,4 +37,4 @@ const WelcomeScreen = () => {
   );
 };
 
-export default WelcomeScreen;
+export default Home;
