@@ -1,6 +1,8 @@
 import React from "react";
 import Loading from "../components/Loading";
 
+const API_BASE_URL = "https://opentdb.com/api.php";
+
 const Settings = () => {
   const [loading, setLoading] = React.useState(false);
   const [settings, setSettings] = React.useState({
@@ -14,10 +16,32 @@ const Settings = () => {
     const value = Number(event.target.value) || event.target.value;
     setSettings((settings) => ({ ...settings, [name]: value }));
   }
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
+    const url =
+      `${API_BASE_URL}?amount=${settings.questionCount}` +
+      (settings.difficulty !== `any`
+        ? `&difficulty=${settings.difficulty}`
+        : ``);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      if (result.response_code !== 0) {
+        throw new Error("There was an error in response");
+      }
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   console.log(settings);
   return (
     <section>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">User</label>
         <input
           type="text"
