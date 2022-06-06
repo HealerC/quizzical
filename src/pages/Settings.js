@@ -1,11 +1,11 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { createGame } from "../components/controllers";
 
 const API_BASE_URL = "https://opentdb.com/api.php";
 
-const Settings = ({setGame}) => {
+const Settings = ({ setGame }) => {
   const [loading, setLoading] = React.useState(false);
   const [settings, setSettings] = React.useState({
     username: "",
@@ -21,6 +21,9 @@ const Settings = ({setGame}) => {
   }
   async function handleSubmit(event) {
     event.preventDefault();
+    if (!settings.username) {
+      return;
+    }
     setLoading(true);
     const url =
       `${API_BASE_URL}?amount=${settings.questionCount}` +
@@ -39,7 +42,7 @@ const Settings = ({setGame}) => {
       //console.log(result);
       const game = createGame(result.results);
       //console.log(game);
-      setGame(game);
+      setGame({ username: settings.username, game });
       navigate("/game");
     } catch (error) {
       console.error(error);
@@ -55,6 +58,7 @@ const Settings = ({setGame}) => {
           name="username"
           value={settings.username}
           onChange={handleChange}
+          required
         />
         <fieldset name="difficulty">
           <legend>Difficulty</legend>
