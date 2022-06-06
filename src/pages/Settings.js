@@ -41,11 +41,11 @@ const Settings = () => {
         </fieldset>
         <fieldset name="question-count">
           <legend>No. of questions</legend>
-          <input type="radio" name="question-count" value="5" id="5qc" />
+          <input type="radio" name="questionCount" value="5" id="5qc" />
           <label htmlFor="5qc">5</label>
-          <input type="radio" name="question-count" value="10" id="10qc" />
+          <input type="radio" name="questionCount" value="10" id="10qc" />
           <label htmlFor="10qc">10</label>
-          <input type="radio" name="question-count" value="20" id="20qc" />
+          <input type="radio" name="questionCount" value="20" id="20qc" />
           <label htmlFor="20qc">20</label>
         </fieldset>
         <fieldset name="time">
