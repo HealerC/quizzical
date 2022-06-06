@@ -1,10 +1,11 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import Loading from "../components/Loading";
 import { createGame } from "../components/controllers";
 
 const API_BASE_URL = "https://opentdb.com/api.php";
 
-const Settings = () => {
+const Settings = ({setGame}) => {
   const [loading, setLoading] = React.useState(false);
   const [settings, setSettings] = React.useState({
     username: "",
@@ -12,6 +13,7 @@ const Settings = () => {
     questionCount: 10,
     time: 10,
   });
+  const navigate = useNavigate();
   function handleChange(event) {
     const name = event.target.name;
     const value = Number(event.target.value) || event.target.value;
@@ -36,7 +38,9 @@ const Settings = () => {
       }
       //console.log(result);
       const game = createGame(result.results);
-      console.log(game);
+      //console.log(game);
+      setGame(game);
+      navigate("/game");
     } catch (error) {
       console.error(error);
     }

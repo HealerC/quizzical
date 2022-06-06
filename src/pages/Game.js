@@ -1,14 +1,12 @@
 import React from "react";
 import Question from "../components/Question";
 
-const Game = () => {
+const Game = ({ game }) => {
+  console.log(game);
   return (
     <section>
-      <Question />
-      <Question />
-      <Question />
-      <Question />
-      <Question />
+      Game
+      {JSON.stringify(game)}
       <button>Check answers</button>
     </section>
   );
