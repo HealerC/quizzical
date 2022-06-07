@@ -2,29 +2,6 @@ import React from "react";
 import { nanoid } from "nanoid";
 
 const Question = ({ trivia, handleChange, status }) => {
-  /*const [trivia, setTrivia] = React.useState({
-    question: "",
-    correct_answer: "",
-    options: [],
-    selected: "",
-    category: "",
-    difficulty: "",
-  });
-
-  React.useEffect(() => {
-    setTrivia(quizQuestion);
-  }, [quizQuestion]); */
-
-  /**const handleChange = (event) => {
-    const value = event.target.value;
-    setTrivia((trivia) => ({ ...trivia, selected: value }));
-  };**/
-  //console.log(trivia);
-  /* if (status === 1) {
-    if (trivia.selected === trivia.correct_answer) {
-      incrementScore((score) => score + 1);
-    }
-  }*/
   const showCorrectAnswer = () => {
     if (trivia.selected === trivia.correct_answer) {
       return (
