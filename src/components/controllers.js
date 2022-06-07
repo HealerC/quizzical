@@ -1,5 +1,24 @@
 //import { nanoid } from "nanoid";
 const { nanoid } = require("nanoid");
+const API_BASE_URL = "https://opentdb.com/api.php";
+
+const getGame = async (url) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const result = await response.json();
+    if (result.response_code !== 0) {
+      throw new Error("There was an error in response");
+    }
+    const game = createGame(result.results);
+    return game;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 
 const createGame = (apiResult) => {
   const game = apiResult.map((result) => {
@@ -21,4 +40,4 @@ const createGame = (apiResult) => {
   return game;
 };
 
-module.exports = { createGame };
+module.exports = { getGame };

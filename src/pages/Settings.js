@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
-import { createGame } from "../components/controllers";
+import { getGame } from "../components/controllers";
 import { nanoid } from "nanoid";
 
 const API_BASE_URL = "https://opentdb.com/api.php";
@@ -62,23 +62,12 @@ const Settings = ({ setGame }) => {
         ? `&difficulty=${settings.difficulty}`
         : ``) +
       (settings.category !== Number(0) && `&category=${settings.category}`);
-    console.log(url);
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const result = await response.json();
-      if (result.response_code !== 0) {
-        throw new Error("There was an error in response");
-      }
-      //console.log(result);
-      const game = createGame(result.results);
-      //console.log(game);
-      setGame({ username: settings.username, game });
+
+    const game = await getGame(url);
+    if (game) {
+      setGame({ username: settings.username, game, url });
+      setLoading(false);
       navigate("/game");
-    } catch (error) {
-      console.error(error);
     }
   }
   console.log(settings);
