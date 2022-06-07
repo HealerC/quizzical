@@ -47,18 +47,19 @@ const Question = ({ trivia, handleChange, status }) => {
     <article>
       <h2 dangerouslySetInnerHTML={{ __html: trivia.question }}></h2>
       {trivia.options.map((option) => {
+        let radioId = option + trivia.id;
         return (
           <span key={nanoid()}>
             <input
               type="radio"
               name={trivia.question}
               value={option}
-              id={option}
+              id={radioId}
               onChange={(event) => handleChange(event, trivia.id)}
               checked={option === trivia.selected}
             />
             <label
-              htmlFor={option}
+              htmlFor={radioId}
               dangerouslySetInnerHTML={{ __html: option }}
             ></label>
           </span>
