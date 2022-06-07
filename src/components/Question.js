@@ -1,8 +1,8 @@
 import React from "react";
 import { nanoid } from "nanoid";
 
-const Question = ({ trivia: quizQuestion }) => {
-  const [trivia, setTrivia] = React.useState({
+const Question = ({ trivia, handleChange }) => {
+  /*const [trivia, setTrivia] = React.useState({
     question: "",
     correct_answer: "",
     options: [],
@@ -13,14 +13,36 @@ const Question = ({ trivia: quizQuestion }) => {
 
   React.useEffect(() => {
     setTrivia(quizQuestion);
-    console.log(quizQuestion);
-  }, [quizQuestion]);
+  }, [quizQuestion]); */
 
-  const handleChange = (event) => {
+  /**const handleChange = (event) => {
     const value = event.target.value;
     setTrivia((trivia) => ({ ...trivia, selected: value }));
+  };**/
+  //console.log(trivia);
+  /* if (status === 1) {
+    if (trivia.selected === trivia.correct_answer) {
+      incrementScore((score) => score + 1);
+    }
+  }*/
+  const showCorrectAnswer = () => {
+    if (trivia.selected === trivia.correct_answer) {
+      return (
+        <div style={{ color: "green" }}>
+          Correct answer chosen {trivia.selected}
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ color: "red" }}>
+          Wrong answer chosen {trivia.selected}
+          <span style={{ color: "green" }}>
+            Correct answer {trivia.correct_answer}
+          </span>
+        </div>
+      );
+    }
   };
-  console.log(trivia);
   return (
     <article>
       <h2 dangerouslySetInnerHTML={{ __html: trivia.question }}></h2>
@@ -32,7 +54,7 @@ const Question = ({ trivia: quizQuestion }) => {
               name={trivia.question}
               value={option}
               id={option}
-              onChange={handleChange}
+              onChange={(event) => handleChange(event, trivia.id)}
               checked={option === trivia.selected}
             />
             <label
@@ -42,6 +64,7 @@ const Question = ({ trivia: quizQuestion }) => {
           </span>
         );
       })}
+      {/* {status === 1 && showCorrectAnswer()} */}
     </article>
   );
 };
