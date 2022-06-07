@@ -1,6 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import Question from "../components/Question";
+import { getGame } from "../components/controllers";
 
 const Game = ({ game }) => {
   const [status, setStatus] = React.useState(0);
@@ -33,7 +34,12 @@ const Game = ({ game }) => {
     setScore(userScore);
     setStatus(1); // Game over
   };
-
+  const handleNewGameClick = async () => {
+    const newGame = await getGame(game.url);
+    setQuiz(newGame);
+    setStatus(0);
+    setScore(0);
+  };
   return (
     <>
       <h2>{game.username}</h2>
@@ -48,13 +54,17 @@ const Game = ({ game }) => {
         ))}
       </form>
       <footer>
+        <h3>{game.username}</h3>
         <button type="submit" form="game-form">
           Check answers
         </button>
         {status === 1 && (
-          <p className="info">
-            You got {score}/{game.game.length} correctly
-          </p>
+          <section>
+            <p className="info">
+              You got {score}/{game.game.length} correctly
+            </p>
+            <button onClick={handleNewGameClick}>Play again</button>
+          </section>
         )}
       </footer>
     </>
