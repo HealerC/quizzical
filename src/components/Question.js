@@ -1,7 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 
-const Question = ({ trivia, handleChange }) => {
+const Question = ({ trivia, handleChange, status }) => {
   /*const [trivia, setTrivia] = React.useState({
     question: "",
     correct_answer: "",
@@ -64,7 +64,7 @@ const Question = ({ trivia, handleChange }) => {
           </span>
         );
       })}
-      {/* {status === 1 && showCorrectAnswer()} */}
+      {status === 1 && showCorrectAnswer()}
     </article>
   );
 };

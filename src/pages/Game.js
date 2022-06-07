@@ -4,7 +4,7 @@ import Question from "../components/Question";
 
 const Game = ({ game }) => {
   const [status, setStatus] = React.useState(0);
-  const [scores, setScores] = React.useState(0);
+  const [score, setScore] = React.useState(0);
   const [quiz, setQuiz] = React.useState([]);
 
   React.useEffect(() => {
@@ -23,6 +23,14 @@ const Game = ({ game }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const userScore = quiz.reduce((cumulativeSum, question) => {
+      if (question.selected === question.correct_answer) {
+        let num = cumulativeSum + 1;
+        return num;
+      }
+      return cumulativeSum;
+    }, 0);
+    setScore(userScore);
     setStatus(1); // Game over
   };
 
@@ -35,6 +43,7 @@ const Game = ({ game }) => {
             key={nanoid()}
             trivia={trivia}
             handleChange={handleChange}
+            status={status}
           />
         ))}
       </form>
@@ -44,7 +53,7 @@ const Game = ({ game }) => {
         </button>
         {status === 1 && (
           <p className="info">
-            You got {scores}/{game.game.length} correctly
+            You got {score}/{game.game.length} correctly
           </p>
         )}
       </footer>
