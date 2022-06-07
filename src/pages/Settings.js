@@ -2,8 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { createGame } from "../components/controllers";
+import { nanoid } from "nanoid";
 
 const API_BASE_URL = "https://opentdb.com/api.php";
+const API_CATEGORIES = "https://opentdb.com/api_category.php";
 
 const Settings = ({ setGame }) => {
   const [loading, setLoading] = React.useState(false);
@@ -12,8 +14,37 @@ const Settings = ({ setGame }) => {
     difficulty: "any",
     questionCount: 10,
     time: 10,
+    category: "0",
   });
+  const [categories, setCategories] = React.useState(null);
+
   const navigate = useNavigate();
+  // Get the categories of the quiz
+  React.useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(API_CATEGORIES);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      if (!result.trivia_categories) {
+        throw new Error("There is an error with received result");
+      }
+
+      setCategories(result.trivia_categories);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
   function handleChange(event) {
     const name = event.target.name;
     const value = Number(event.target.value) || event.target.value;
@@ -29,7 +60,9 @@ const Settings = ({ setGame }) => {
       `${API_BASE_URL}?amount=${settings.questionCount}` +
       (settings.difficulty !== `any`
         ? `&difficulty=${settings.difficulty}`
-        : ``);
+        : ``) +
+      (settings.category !== Number(0) && `&category=${settings.category}`);
+    console.log(url);
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -129,6 +162,37 @@ const Settings = ({ setGame }) => {
           />
           <label htmlFor="20qc">20</label>
         </fieldset>
+        {categories ? (
+          <>
+            <label htmlFor="category">Category</label>
+            <select
+              name="category"
+              value={settings.category}
+              id="category"
+              onChange={handleChange}
+            >
+              <option value="0">Any</option>
+              {categories.map((category) => (
+                <option key={nanoid()} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </>
+        ) : (
+          <>
+            <label htmlFor="category">Category</label>
+            <select
+              name="category"
+              value={settings.category}
+              id="category"
+              onChange={handleChange}
+            >
+              <option value="0">Any</option>
+            </select>
+          </>
+        )}
+
         <fieldset name="time">
           <legend>Time (mins)</legend>
           <input
