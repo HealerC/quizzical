@@ -65,7 +65,7 @@ const Settings = ({ setGame }) => {
 
     const game = await getGame(url);
     if (game) {
-      setGame({ username: settings.username, game, url });
+      setGame({ username: settings.username, game, url, time: settings.time });
       setLoading(false);
       navigate("/game");
     }

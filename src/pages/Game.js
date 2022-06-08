@@ -1,16 +1,41 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import Question from "../components/Question";
-import { getGame } from "../components/controllers";
+import { getGame, TimeConverter } from "../components/controllers";
+import Timer from "tiny-timer";
 
 const Game = ({ game }) => {
-  const [status, setStatus] = React.useState(0);
+  const [status, setStatus] = React.useState(-1);
   const [score, setScore] = React.useState(0);
   const [quiz, setQuiz] = React.useState([]);
+  const [time, setTime] = React.useState("0:00");
+
+  const timer = new Timer();
+  timer.on("tick", (ms) => {
+    setTime(TimeConverter.millisToMinuteSecond(ms));
+  });
+  timer.on("done", () => {
+    handleSubmit();
+  });
 
   React.useEffect(() => {
     setQuiz(game.game);
+    //setTime(game.time);
+    setStatus(0);
   }, [game]);
+
+  React.useEffect(() => {
+    if (status === 0) {
+      // New game starts
+      timer.start(TimeConverter.minutesToMillis(game.time));
+    } else if (status === 1) {
+      // Game over
+      timer.pause();
+    } else {
+      // (status === 0.5) Continue game
+      timer.resume();
+    }
+  }, [status]);
 
   const handleChange = (event, id) => {
     if (status === 1) {
@@ -27,7 +52,7 @@ const Game = ({ game }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event && event.preventDefault();
     const userScore = quiz.reduce((cumulativeSum, question) => {
       if (question.selected === question.correct_answer) {
         let num = cumulativeSum + 1;
@@ -70,6 +95,7 @@ const Game = ({ game }) => {
             <button onClick={handleNewGameClick}>Play again</button>
           </section>
         )}
+        <p>{time}</p>
       </footer>
     </>
   );

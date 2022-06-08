@@ -6,7 +6,12 @@ import SharedLayout from "./components/SharedLayout";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
-  const [game, setGame] = React.useState({ username: "", game: [], url: "" });
+  const [game, setGame] = React.useState({
+    username: "",
+    game: [],
+    url: "",
+    time: 0,
+  });
   return (
     <BrowserRouter>
       <Routes>
