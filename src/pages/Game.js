@@ -13,6 +13,10 @@ const Game = ({ game }) => {
   }, [game]);
 
   const handleChange = (event, id) => {
+    if (status === 1) {
+      // game is over but user still selected option
+      setStatus(0); // Get back to game mode
+    }
     const value = event.target.value;
     setQuiz(
       quiz.map((question) => {
