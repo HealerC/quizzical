@@ -48,7 +48,7 @@ const TimeConverter = {
     const seconds = millis / 1000;
 
     let minutes = Math.floor(seconds / 60).toString();
-    let secondsRemaining = (seconds % 60).toString();
+    let secondsRemaining = Math.floor(seconds % 60).toString();
 
     if (minutes.length < 2) {
       minutes = "0" + minutes;
