@@ -15,7 +15,7 @@ const Game = ({ game }) => {
   const handleChange = (event, id) => {
     if (status === 1) {
       // game is over but user still selected option
-      setStatus(0); // Get back to game mode
+      setStatus(0.5); // A continue game mode
     }
     const value = event.target.value;
     setQuiz(
