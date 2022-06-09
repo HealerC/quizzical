@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import Question from "../components/Question";
 import { getGame, TimeConverter } from "../components/controllers";
 import Timer from "tiny-timer";
+const timer = new Timer();
 
 const Game = ({ game }) => {
   const [status, setStatus] = React.useState(-1);
@@ -10,30 +11,40 @@ const Game = ({ game }) => {
   const [quiz, setQuiz] = React.useState([]);
   const [time, setTime] = React.useState("0:00");
 
-  const timer = new Timer();
-  timer.on("tick", (ms) => {
-    setTime(TimeConverter.millisToMinuteSecond(ms));
-  });
-  timer.on("done", () => {
-    handleSubmit();
-  });
+  React.useEffect(() => {
+    timer.on("tick", (ms) => {
+      setTime(TimeConverter.millisToMinuteSecond(ms));
+    });
+    timer.on("done", () => {
+      handleSubmit();
+    });
+    timer.on("statusChanged", (status) => {
+      console.log(status);
+    });
+    return () => {
+      timer.stop();
+    };
+  }, []);
 
   React.useEffect(() => {
     setQuiz(game.game);
-    //setTime(game.time);
     setStatus(0);
   }, [game]);
 
   React.useEffect(() => {
-    if (status === 0) {
-      // New game starts
-      timer.start(TimeConverter.minutesToMillis(game.time));
-    } else if (status === 1) {
-      // Game over
-      timer.pause();
-    } else {
-      // (status === 0.5) Continue game
-      timer.resume();
+    switch (status) {
+      case 0: // New game starts
+        console.log("new game");
+        timer.stop(); // Stop previous timing operation (if any)
+        timer.start(TimeConverter.minutesToMillis(game.time));
+        break;
+      case 1: // Use has finished the game (but may continue)
+        timer.pause();
+        break;
+      case 0.5: // User continued a game
+        timer.resume();
+        break;
+      default:
     }
   }, [status]);
 
@@ -52,7 +63,7 @@ const Game = ({ game }) => {
   };
 
   const handleSubmit = (event) => {
-    event && event.preventDefault();
+    event && event.preventDefault(); // A timer can submit the game
     const userScore = quiz.reduce((cumulativeSum, question) => {
       if (question.selected === question.correct_answer) {
         let num = cumulativeSum + 1;
@@ -71,7 +82,6 @@ const Game = ({ game }) => {
   };
   return (
     <>
-      <h2>{game.username}</h2>
       <form id="game-form" onSubmit={handleSubmit}>
         {quiz.map((trivia) => (
           <Question
