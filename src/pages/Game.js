@@ -85,7 +85,7 @@ const Game = ({ game }) => {
       <form id="game-form" onSubmit={handleSubmit}>
         {quiz.map((trivia) => (
           <Question
-            key={nanoid()}
+            key={trivia.id}
             trivia={trivia}
             handleChange={handleChange}
             status={status}
