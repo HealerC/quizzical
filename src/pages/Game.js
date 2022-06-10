@@ -1,5 +1,6 @@
 import React from "react";
 import { nanoid } from "nanoid";
+import { QuizzicalContext } from "../components/QuizzicalContext";
 import Question from "../components/Question";
 import { getGame, TimeConverter } from "../components/controllers";
 import Timer from "tiny-timer";
@@ -10,7 +11,8 @@ const Game = ({ game }) => {
   const [score, setScore] = React.useState(0);
   const [quiz, setQuiz] = React.useState([]);
   const [time, setTime] = React.useState("0:00");
-
+  const { state, dispatch } = React.useContext(QuizzicalContext);
+  console.log("game", state, dispatch);
   React.useEffect(() => {
     timer.on("tick", (ms) => {
       setTime(TimeConverter.millisToMinuteSecond(ms));

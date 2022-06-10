@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { getGame } from "../components/controllers";
 import { nanoid } from "nanoid";
-
+import { QuizzicalContext } from "../components/QuizzicalContext";
 const API_BASE_URL = "https://opentdb.com/api.php";
 const API_CATEGORIES = "https://opentdb.com/api_category.php";
 
@@ -70,7 +70,9 @@ const Settings = ({ setGame }) => {
       navigate("/game");
     }
   }
-  console.log(settings);
+  // console.log(settings);
+  const { state, dispatch } = React.useContext(QuizzicalContext);
+  console.log("settings", state, dispatch);
   return (
     <section>
       <form onSubmit={handleSubmit}>
