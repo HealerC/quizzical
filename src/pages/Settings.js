@@ -17,15 +17,31 @@ const Settings = ({ setGame }) => {
     category: "0",
   });
   const [categories, setCategories] = React.useState(null);
+  const { state, dispatch } = React.useContext(QuizzicalContext);
 
   const navigate = useNavigate();
   // Get the categories of the quiz
   React.useEffect(() => {
     getCategories();
-  }, []);
+    getLastSetup();
+  }, [state.settings]);
 
+  const getLastSetup = () => {
+    if (state.settings.lastSetup) {
+      const lastSetup = state.settings.lastSetup;
+      setSettings(lastSetup);
+    }
+  };
   const getCategories = async () => {
     setLoading(true);
+    const storedCategories = state.settings.categories;
+    console.log(storedCategories);
+    if (storedCategories.length > 0) {
+      setCategories(storedCategories);
+      setLoading(false);
+      console.log("no need to go far");
+      return;
+    }
     try {
       const response = await fetch(API_CATEGORIES);
       if (!response.ok) {
@@ -36,7 +52,8 @@ const Settings = ({ setGame }) => {
       if (!result.trivia_categories) {
         throw new Error("There is an error with received result");
       }
-
+      console.log("we needed to go far");
+      dispatch({ type: "SET_CATEGORIES", payload: result.trivia_categories });
       setCategories(result.trivia_categories);
       setLoading(false);
     } catch (error) {
@@ -65,13 +82,22 @@ const Settings = ({ setGame }) => {
 
     const game = await getGame(url);
     if (game) {
-      setGame({ username: settings.username, game, url, time: settings.time });
+      dispatch({
+        type: "SAVE_GAME_DATA",
+        payload: {
+          username: settings.username,
+          url,
+          time: settings.time,
+          game,
+        },
+      });
+      // setGame({ username: settings.username, game, url, time: settings.time });
       setLoading(false);
+      dispatch({ type: "SAVE_PREV_SETTINGS", payload: settings });
       navigate("/game");
     }
   }
   // console.log(settings);
-  const { state, dispatch } = React.useContext(QuizzicalContext);
   console.log("settings", state, dispatch);
   return (
     <section>

@@ -17,25 +17,26 @@ const App = () => {
   });
 
   //const [state, dispatch] = React.useReducer(DEFAULT_STATE, quizzicalReducer);
-  // React.useEffect(() => {
-  //   try {
-  //     const storage = window["localStorage"];
-  //     var x = "__storage_test__";
-  //     storage.setItem(x, x);
-  //     storage.removeItem(x); // Storage works
-
-  //     const lastSession = storage.getItem("quizzical");
-  //     if (lastSession) {
-  //       const lastGameData = JSON.parse(lastSession);
-  //       dispatch({ type: "LOAD_PREV_GAME", payload: lastGameData });
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     dispatch({ type: "NO_STORAGE" });
-  //   }
-  // }, []);
   const { state, dispatch } = React.useContext(QuizzicalContext);
-  console.log("app", state, dispatch);
+  React.useEffect(() => {
+    try {
+      const storage = window["localStorage"];
+      var x = "__storage_test__";
+      storage.setItem(x, x);
+      storage.removeItem(x); // Storage works
+
+      const lastSession = storage.getItem("quizzical");
+      if (lastSession) {
+        const lastGameData = JSON.parse(lastSession);
+        console.log("something here last time", lastGameData);
+        dispatch({ type: "LOAD_PREV_GAME", payload: lastGameData });
+      }
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: "NO_STORAGE" });
+    }
+  }, []);
+  console.log("app", state);
   return (
     <BrowserRouter>
       <Routes>
