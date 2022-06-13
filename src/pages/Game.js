@@ -53,21 +53,21 @@ const Game = ({ game }) => {
     };
   }, []);
 
-  React.useEffect(() => {
-    // setQuiz(game.game);
-    // if (state.gameDetails.game.length <= 0) {
-    //   return;
-    // }
-    // setQuiz(state.gameDetails.game);
-    if (
-      state.gameDetails.game.status < 0 &&
-      state.gameDetails.game.quiz.length > 0
-    ) {
-      console.log("Weeeeeeeee");
-      dispatch({ type: "START_GAME" });
-    }
-    // setStatus(0);
-  }, [state.gameDetails]);
+  // React.useEffect(() => {
+  //   // setQuiz(game.game);
+  //   // if (state.gameDetails.game.length <= 0) {
+  //   //   return;
+  //   // }
+  //   // setQuiz(state.gameDetails.game);
+  //   if (
+  //     state.gameDetails.game.status < 0 &&
+  //     state.gameDetails.game.quiz.length > 0
+  //   ) {
+  //     console.log("Weeeeeeeee");
+  //     dispatch({ type: "START_GAME" });
+  //   }
+  //   // setStatus(0);
+  // }, [state.gameDetails]);
 
   React.useEffect(() => {
     if (state.gameDetails.game.status >= 0)

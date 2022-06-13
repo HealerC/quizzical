@@ -32,7 +32,7 @@ const actionList = {
   LOAD_PREV_GAME: "LOAD_PREV_GAME",
   NO_STORAGE: "NO_STORAGE",
   SAVE_GAME_DATA: "SAVE_GAME_DATA",
-  START_GAME: "START_GAME",
+  // START_GAME: "START_GAME",
   SET_TIME_REMAINING: "SET_TIME_REMAINING",
   CONTINUE_EXISTING_GAME: "CONTINUE_EXISTING_GAME",
   GAME_PLAYED: "GAME_PLAYED",
@@ -79,15 +79,15 @@ function quizzicalReducer(state, action) {
         },
       };
       break;
-    case actionList.START_GAME:
-      newState = {
-        ...state,
-        gameDetails: {
-          ...state.gameDetails,
-          game: { ...state.gameDetails.game, status: 0 },
-        },
-      };
-      break;
+    // case actionList.START_GAME:
+    //   newState = {
+    //     ...state,
+    //     gameDetails: {
+    //       ...state.gameDetails,
+    //       game: { ...state.gameDetails.game, status: 0 },
+    //     },
+    //   };
+    //   break;
     case actionList.SET_TIME_REMAINING:
       newState = {
         ...state,
