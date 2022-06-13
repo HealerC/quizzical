@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { DEFAULT_STATE, quizzicalReducer } from "./components/reducer";
 //import QuizzicalContext from "./components/QuizzicalContext";
 import { QuizzicalContext } from "./components/QuizzicalContext";
+import "./stylesheets/app.css";
 
 const App = () => {
   const [game, setGame] = React.useState({
