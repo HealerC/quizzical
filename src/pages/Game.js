@@ -90,6 +90,9 @@ const Game = ({ game }) => {
   }, [state.gameDetails.game.status]);
 
   const handleChange = (event, id) => {
+    if (timer.time === 0) {
+      return;
+    }
     if (state.gameDetails.game.status === 1) {
       // game is over but user still selected option
       // setStatus(0.5); // A continue game mode
