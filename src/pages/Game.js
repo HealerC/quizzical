@@ -63,12 +63,16 @@ const Game = ({ game }) => {
       state.gameDetails.game.status < 0 &&
       state.gameDetails.game.quiz.length > 0
     ) {
+      console.log("Weeeeeeeee");
       dispatch({ type: "START_GAME" });
     }
     // setStatus(0);
   }, [state.gameDetails]);
 
   React.useEffect(() => {
+    if (state.gameDetails.game.status >= 0)
+      timer.start(state.gameDetails.game.time);
+
     switch (state.gameDetails.game.status) {
       case 0: // New game starts
         console.log("new game");
@@ -82,15 +86,16 @@ const Game = ({ game }) => {
         timer.pause();
         break;
       case 0.5: // User continues a game
-        if (timer.status === "paused") timer.resume();
-        else timer.start(state.gameDetails.game.time);
+        timer.resume();
+        // if (timer.status === "paused") timer.resume();
+        // else timer.start(state.gameDetails.game.time);
         break;
       default:
     }
   }, [state.gameDetails.game.status]);
 
   const handleChange = (event, id) => {
-    if (timer.time === 0) {
+    if (timer.time <= 0) {
       return;
     }
     if (state.gameDetails.game.status === 1) {
@@ -111,7 +116,8 @@ const Game = ({ game }) => {
 
   const handleSubmit = (event) => {
     event && event.preventDefault(); // A timer can submit the game
-    dispatch({ type: "SUBMIT_GAME" });
+    const timeRemaining = timer.time;
+    dispatch({ type: "SUBMIT_GAME", payload: { timeRemaining } });
     // const userScore = quiz.reduce((cumulativeSum, question) => {
     //   if (question.selected === question.correct_answer) {
     //     let num = cumulativeSum + 1;

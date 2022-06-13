@@ -150,6 +150,7 @@ function quizzicalReducer(state, action) {
           string: userScoreString,
         },
       ].sort((a, b) => b.percentage - a.percentage);
+
       newState = {
         ...state,
         gameDetails: {
@@ -158,6 +159,7 @@ function quizzicalReducer(state, action) {
             ...state.gameDetails.game,
             score: userScore,
             status: 1,
+            time: action.payload.timeRemaining,
           },
         },
         leaderboard: newLeaderboard,
