@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { QuizzicalContext } from "../components/QuizzicalContext";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { state, dispatch } = React.useContext(QuizzicalContext);
 
   return (
     <>
@@ -13,24 +15,21 @@ const Home = () => {
       </section>
       <aside>
         <table>
-          <tr>
-            <td>Wini</td>
-            <td>80</td>
-          </tr>
-          <tr>
-            <td>Deba</td>
-            <td>80</td>
-          </tr>
-          <tr>
-            <td>Nosasu</td>
-            <td>80</td>
-          </tr>
-          <tr>
-            <td>Chairman</td>
-            <td>80</td>
-          </tr>
+          <thead>
+            <tr>
+              <th colSpan="2">LEADERBOARD (local)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {state.leaderboard.map((user) => (
+              <tr>
+                <td>{user.name}</td>
+                <td>{user.string}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-        <i>D</i>
+        <i onClick={() => dispatch({ type: "CLEAR_LEADERBOARD" })}>D</i>
       </aside>
     </>
   );

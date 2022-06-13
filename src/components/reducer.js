@@ -38,6 +38,7 @@ const actionList = {
   GAME_PLAYED: "GAME_PLAYED",
   SUBMIT_GAME: "SUBMIT_GAME",
   START_NEW_GAME: "START_NEW_GAME",
+  CLEAR_LEADERBOARD: "CLEAR_LEADERBOARD",
 };
 
 function quizzicalReducer(state, action) {
@@ -73,6 +74,7 @@ function quizzicalReducer(state, action) {
             ...state.gameDetails.game,
             quiz: game,
             time: TimeConverter.minutesToMillis(time),
+            status: 0,
           },
         },
       };
@@ -135,6 +137,19 @@ function quizzicalReducer(state, action) {
         },
         0
       );
+      const percentage = Math.round(
+        (100 * userScore) / state.gameDetails.game.quiz.length
+      );
+      const userScoreString = `${userScore}/${state.gameDetails.game.quiz.length} (${percentage}%)`;
+      const newLeaderboard = [
+        ...state.leaderboard,
+        {
+          name: state.gameDetails.username,
+          score: userScore,
+          percentage: percentage,
+          string: userScoreString,
+        },
+      ].sort((a, b) => b.percentage - a.percentage);
       newState = {
         ...state,
         gameDetails: {
@@ -145,6 +160,7 @@ function quizzicalReducer(state, action) {
             status: 1,
           },
         },
+        leaderboard: newLeaderboard,
       };
       break;
     case actionList.START_NEW_GAME:
@@ -160,6 +176,12 @@ function quizzicalReducer(state, action) {
             time: TimeConverter.minutesToMillis(state.gameDetails.time),
           },
         },
+      };
+      break;
+    case actionList.CLEAR_LEADERBOARD:
+      newState = {
+        ...state,
+        leaderboard: [],
       };
       break;
     default:
