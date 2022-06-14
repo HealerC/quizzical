@@ -1,0 +1,23 @@
+$backgroundColor: beige;
+$dark-blue: #293264;
+$light-blue: #D6DBF5;
+$blue: #4D5B9E;
+$outline-color: #F5F7FB;
+
+%big-blue {
+  background-color: $blue;
+  color: $light-blue;
+  padding: 0.5em 1em;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 1em;
+}
+
+%big-blue-hover {
+  background-color: $dark-blue;
+}
+
+%big-blue-active {
+  color: $outline-color;
+}

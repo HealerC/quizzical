@@ -36,8 +36,10 @@ const Info = ({ username, handleClick, showChildren, children }) => {
     return children;
   }
   return (
-    <section>
-      <h2>{username} - A game is ongoing</h2>
+    <section className="protected-settings">
+      <h2>
+        <span className="name">{username}</span> - A game is ongoing
+      </h2>
       <button id="continue" onClick={handleClick}>
         Continue
       </button>

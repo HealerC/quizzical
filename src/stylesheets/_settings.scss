@@ -1,0 +1,89 @@
+$backgroundColor: beige;
+$dark-blue: #293264;
+$light-blue: #D6DBF5;
+$blue: #4D5B9E;
+$outline-color: #F5F7FB;
+
+@use "variables";
+
+.settings {
+  width: 100%;
+  margin: auto;
+  font-weight: bold;
+
+  input[type="text"], select {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: $dark-blue;
+
+    
+    border: 1px solid $outline-color;
+    border-radius: 1rem;
+    background-color: transparent;
+
+  }
+  input[type="text"]:focus, select:focus {
+    outline: 1px solid $blue;
+  }
+
+
+  fieldset {
+    margin: 1em 0;
+    border: none;
+    border-bottom: 1px solid $light-blue;
+  }
+
+  button {
+    @extend %big-blue; 
+    display: block;
+    margin: auto;
+  }
+  button:hover {
+    @extend %big-blue-hover;
+  }
+  button:active {
+    @extend %big-blue-active;
+  }
+}
+
+.protected-settings {
+  width: 100%;
+  margin: auto;
+
+  .name {
+    color: $dark-blue;
+  }
+  button {
+    display: block;
+    border: 1px solid $blue;
+    color: $dark-blue;
+    text-align: center;
+    background-color: $light-blue;
+    font-size: larger;
+    width: 100%;
+    margin: 1rem;
+    border-radius: 1rem;
+    padding: 0.2rem 0;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: $blue;
+    color: $light-blue;
+  }
+  button:active {
+    color: $outline-color;
+  }
+}
+
+@media (min-width: 1000px) {
+  .settings {
+    width: 50%;
+  }
+  .protected-settings {
+    width: 50%;
+  }
+}

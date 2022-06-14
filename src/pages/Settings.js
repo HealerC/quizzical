@@ -100,16 +100,19 @@ const Settings = ({ setGame }) => {
   // console.log(settings);
   console.log("settings", state, dispatch);
   return (
-    <section>
+    <section className="settings">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">User</label>
-        <input
-          type="text"
-          name="username"
-          value={settings.username}
-          onChange={handleChange}
-          required
-        />
+        <fieldset>
+          <label htmlFor="username">User</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value={settings.username}
+            onChange={handleChange}
+            required
+          />
+        </fieldset>
         <fieldset name="difficulty">
           <legend>Difficulty</legend>
           <input
@@ -179,36 +182,6 @@ const Settings = ({ setGame }) => {
           />
           <label htmlFor="20qc">20</label>
         </fieldset>
-        {categories ? (
-          <>
-            <label htmlFor="category">Category</label>
-            <select
-              name="category"
-              value={settings.category}
-              id="category"
-              onChange={handleChange}
-            >
-              <option value="0">Any</option>
-              {categories.map((category) => (
-                <option key={nanoid()} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </>
-        ) : (
-          <>
-            <label htmlFor="category">Category</label>
-            <select
-              name="category"
-              value={settings.category}
-              id="category"
-              onChange={handleChange}
-            >
-              <option value="0">Any</option>
-            </select>
-          </>
-        )}
 
         <fieldset name="time">
           <legend>Time (mins)</legend>
@@ -240,6 +213,38 @@ const Settings = ({ setGame }) => {
           />
           <label htmlFor="40t">40</label>
         </fieldset>
+
+        {categories ? (
+          <fieldset>
+            <label htmlFor="category">Category</label>
+            <select
+              name="category"
+              value={settings.category}
+              id="category"
+              onChange={handleChange}
+            >
+              <option value="0">Any</option>
+              {categories.map((category) => (
+                <option key={nanoid()} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </fieldset>
+        ) : (
+          <fieldset>
+            <label htmlFor="category">Category</label>
+            <select
+              name="category"
+              value={settings.category}
+              id="category"
+              onChange={handleChange}
+            >
+              <option value="0">Any</option>
+            </select>
+          </fieldset>
+        )}
+
         <button type="submit">Start Quiz</button>
       </form>
       {loading && <Loading />}

@@ -69,6 +69,88 @@ body {
     left: 80%;
   }
 }
+.settings button {
+  background-color: #4D5B9E;
+  color: #D6DBF5;
+  padding: 0.5em 1em;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 1em;
+}
+
+.settings button:hover {
+  background-color: #293264;
+}
+
+.settings button:active {
+  color: #F5F7FB;
+}
+
+.settings {
+  width: 100%;
+  margin: auto;
+  font-weight: bold;
+}
+.settings input[type=text], .settings select {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #293264;
+  border: 1px solid #F5F7FB;
+  border-radius: 1rem;
+  background-color: transparent;
+}
+.settings input[type=text]:focus, .settings select:focus {
+  outline: 1px solid #4D5B9E;
+}
+.settings fieldset {
+  margin: 1em 0;
+  border: none;
+  border-bottom: 1px solid #D6DBF5;
+}
+.settings button {
+  display: block;
+  margin: auto;
+}
+.protected-settings {
+  width: 100%;
+  margin: auto;
+}
+.protected-settings .name {
+  color: #293264;
+}
+.protected-settings button {
+  display: block;
+  border: 1px solid #4D5B9E;
+  color: #293264;
+  text-align: center;
+  background-color: #D6DBF5;
+  font-size: larger;
+  width: 100%;
+  margin: 1rem;
+  border-radius: 1rem;
+  padding: 0.2rem 0;
+  cursor: pointer;
+}
+.protected-settings button:hover {
+  background-color: #4D5B9E;
+  color: #D6DBF5;
+}
+.protected-settings button:active {
+  color: #F5F7FB;
+}
+
+@media (min-width: 1000px) {
+  .settings {
+    width: 50%;
+  }
+  .protected-settings {
+    width: 50%;
+  }
+}
 nav {
   font-weight: bold;
   width: 100%;
