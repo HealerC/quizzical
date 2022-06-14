@@ -4,3 +4,26 @@ $light-blue: #D6DBF5;
 $blue: #4D5B9E;
 
 @use 'home';
+
+nav {
+  font-weight: bold;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+
+  .link {
+    color: black;
+    text-decoration: none;
+    margin: 1rem;
+  }
+  .active {
+    color: $blue;
+  }
+}
+
+@media (min-width: 1000px) {
+  nav {
+    width: 60%;
+  }
+}

@@ -69,5 +69,26 @@ body {
     left: 80%;
   }
 }
+nav {
+  font-weight: bold;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+nav .link {
+  color: black;
+  text-decoration: none;
+  margin: 1rem;
+}
+nav .active {
+  color: #4D5B9E;
+}
+
+@media (min-width: 1000px) {
+  nav {
+    width: 60%;
+  }
+}
 
 /*# sourceMappingURL=app.css.map */
