@@ -8,23 +8,20 @@ const Home = () => {
 
   return (
     <>
-      <section>
-        <h1>Quizzical</h1>
-        <p>Trivial questions for you :-)</p>
-        <button onClick={() => navigate("/settings")}>Begin</button>
+      <section className="home">
+        <div>
+          <h1>Quizzical</h1>
+          <p>Trivial questions for you :-)</p>
+          <button onClick={() => navigate("/settings")}>Begin</button>
+        </div>
       </section>
-      <aside>
+      <aside className="leaderboard">
         <table>
-          <thead>
-            <tr>
-              <th colSpan="2">LEADERBOARD (local)</th>
-            </tr>
-          </thead>
           <tbody>
             {state.leaderboard.map((user) => (
               <tr>
-                <td>{user.name}</td>
-                <td>{user.string}</td>
+                <td className="name">{user.name}</td>
+                <td className="score">{user.string}</td>
               </tr>
             ))}
           </tbody>

@@ -1,5 +1,6 @@
-$backgroundColor: pink;
+$backgroundColor: beige;
+$dark-blue: #293264;
+$light-blue: #D6DBF5;
+$blue: #4D5B9E;
 
-body {
-    background-color: $backgroundColor;
-}
+@use 'home';
