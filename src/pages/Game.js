@@ -136,7 +136,7 @@ const Game = ({ game }) => {
     // setScore(0);
   };
   return (
-    <>
+    <section className="game">
       <form id="game-form" onSubmit={handleSubmit}>
         {state.gameDetails.game.quiz.map((trivia) => (
           <Question
@@ -163,7 +163,7 @@ const Game = ({ game }) => {
         )}
         <p>{TimeConverter.millisToMinuteSecond(time)}</p>
       </footer>
-    </>
+    </section>
   );
 };
 

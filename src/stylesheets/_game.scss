@@ -1,0 +1,49 @@
+$backgroundColor: beige;
+$dark-blue: #293264;
+$light-blue: #D6DBF5;
+$blue: #4D5B9E;
+$outline-color: #F5F7FB;
+$correct-green: #94D7A2;
+$incorrect-red: #F8BCBC;
+
+.game {
+  width: 100%;
+  margin: auto;
+
+  .question {
+    h2 {
+      font-size: 1.2rem;
+      color: $dark-blue;
+      margin-bottom: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+
+      .container {
+        font-size: 1rem;
+        padding: 0.2rem 1rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+    
+    .mark.correct {
+      background-color: $correct-green;
+    }
+    .mark.incorrect {
+      background-color: $incorrect-red;
+    }
+
+  }
+  .question:not(:last-child) {
+    border-bottom: 1px solid $light-blue;
+  }
+}
+
+@media (min-width: 1000px) {
+  .game {
+    width: 60%;
+  }
+}

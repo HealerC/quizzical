@@ -18,7 +18,6 @@
 
 body {
   margin: 0;
-  overflow: hidden;
 }
 
 body {
@@ -165,6 +164,40 @@ body {
   }
   .protected-settings {
     width: 50%;
+  }
+}
+.game {
+  width: 100%;
+  margin: auto;
+}
+.game .question h2 {
+  font-size: 1.2rem;
+  color: #293264;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+.game .question .options-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.game .question .options-group .container {
+  font-size: 1rem;
+  padding: 0.2rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.game .question .mark.correct {
+  background-color: #94D7A2;
+}
+.game .question .mark.incorrect {
+  background-color: #F8BCBC;
+}
+.game .question:not(:last-child) {
+  border-bottom: 1px solid #D6DBF5;
+}
+
+@media (min-width: 1000px) {
+  .game {
+    width: 60%;
   }
 }
 * {
