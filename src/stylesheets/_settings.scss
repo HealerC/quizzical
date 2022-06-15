@@ -56,6 +56,16 @@ $outline-color: #F5F7FB;
       flex-grow: 1;
     }
   }
+
+  .numeric-radio-group {
+    display: flex;
+    fieldset {
+      flex-grow: 1;
+    }
+    fieldset:first-child {
+      border-right: 1px solid $light-blue;
+    }
+  }
 }
 
 .protected-settings {
@@ -85,6 +95,7 @@ $outline-color: #F5F7FB;
   button:active {
     color: $outline-color;
   }
+  
 }
 
 @media (min-width: 1000px) {

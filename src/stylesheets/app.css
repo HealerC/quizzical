@@ -122,6 +122,15 @@ body {
 .settings .radio-container .container {
   flex-grow: 1;
 }
+.settings .numeric-radio-group {
+  display: flex;
+}
+.settings .numeric-radio-group fieldset {
+  flex-grow: 1;
+}
+.settings .numeric-radio-group fieldset:first-child {
+  border-right: 1px solid #D6DBF5;
+}
 
 .protected-settings {
   width: 100%;
@@ -191,6 +200,7 @@ nav .active {
   user-select: none;
   text-align: center;
   padding: 0.2em 0em;
+  color: #293264;
 }
 
 .container:not(:last-child) {
