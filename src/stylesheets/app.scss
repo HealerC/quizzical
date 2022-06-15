@@ -6,6 +6,7 @@ $blue: #4D5B9E;
 @use 'home';
 @use 'settings';
 
+// Navbar
 nav {
   font-weight: bold;
   width: 100%;
@@ -27,4 +28,51 @@ nav {
   nav {
     width: 60%;
   }
+}
+
+// Custom radio buttons
+/* The container */
+.container {
+  position: relative;
+  cursor: pointer;
+  font-size: larger;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  padding: 0.2em 0em;
+}
+.container:not(:last-child) {
+  margin-right: 0.5rem;
+}
+.mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: transparent;
+  border: 1px solid #4D5B9E;
+  border-radius: 1rem;
+  transition: background-color 0.1s linear;
+}
+
+
+/* Hide the browser's default radio button */
+.container input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
+.container:hover input~.mark {
+  background-color: #D6DBF5;
+}
+
+.container input:checked~.mark {
+  border-color: #D6DBF5;
+  background-color: #D6DBF5;
 }

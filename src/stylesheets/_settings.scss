@@ -48,6 +48,14 @@ $outline-color: #F5F7FB;
   button:active {
     @extend %big-blue-active;
   }
+
+  .radio-container {
+    display: flex;
+    justify-content: stretch;
+    .container {
+      flex-grow: 1;
+    }
+  }
 }
 
 .protected-settings {
