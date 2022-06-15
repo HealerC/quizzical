@@ -1,3 +1,21 @@
+.settings button, .home button {
+  background-color: #4D5B9E;
+  color: #D6DBF5;
+  padding: 0.5em 1em;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 1em;
+}
+
+.settings button:hover, .home button:hover {
+  background-color: #293264;
+}
+
+.settings button:active, .home button:active {
+  color: #F5F7FB;
+}
+
 body {
   margin: 0;
   overflow: hidden;
@@ -12,9 +30,9 @@ body {
   height: 100vh;
   margin: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
   text-align: center;
+  margin-top: 20vh;
 }
 .home h1 {
   font-size: 3rem;
@@ -26,7 +44,6 @@ body {
   font-weight: bold;
   margin-top: 0em;
 }
-
 .leaderboard {
   height: 30%;
   width: 100%;
@@ -62,31 +79,12 @@ body {
 @media (min-width: 1000px) {
   .home {
     width: 60%;
-    background-color: pink;
   }
   .leaderboard {
     width: 20%;
     left: 80%;
   }
 }
-.settings button {
-  background-color: #4D5B9E;
-  color: #D6DBF5;
-  padding: 0.5em 1em;
-  font-size: larger;
-  font-weight: bold;
-  border: none;
-  border-radius: 1em;
-}
-
-.settings button:hover {
-  background-color: #293264;
-}
-
-.settings button:active {
-  color: #F5F7FB;
-}
-
 .settings {
   width: 100%;
   margin: auto;

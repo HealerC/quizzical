@@ -3,6 +3,8 @@ $dark-blue: #293264;
 $light-blue: #D6DBF5;
 $blue: #4D5B9E;
 
+@use 'variables';
+
 body {
   margin: 0;
   overflow: hidden;
@@ -19,9 +21,10 @@ body {
   height: 100vh;
   margin: auto;
   display: flex;
-  align-items: center;
+  
   justify-content: center;
   text-align: center;
+  margin-top: 20vh;
 
   h1 {
     font-size: 3rem;
@@ -32,6 +35,16 @@ body {
     font-size: x-large;
     font-weight: bold;
     margin-top: 0em;
+  }
+
+  button {
+    @extend %big-blue; 
+  }
+  button:hover {
+    @extend %big-blue-hover;
+  }
+  button:active {
+    @extend %big-blue-active;
   }
 }
 .leaderboard {
@@ -75,7 +88,6 @@ body {
 @media (min-width: 1000px) {
   .home {
     width: 60%;
-    background-color: pink;
   }
   .leaderboard {
     width: 20%;
