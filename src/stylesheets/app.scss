@@ -6,6 +6,11 @@ $blue: #4D5B9E;
 @use 'home';
 @use 'settings';
 
+//
+* {
+  box-sizing: border-box;
+}
+
 // Navbar
 nav {
   font-weight: bold;

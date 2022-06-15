@@ -169,6 +169,10 @@ body {
     width: 50%;
   }
 }
+* {
+  box-sizing: border-box;
+}
+
 nav {
   font-weight: bold;
   width: 100%;
