@@ -314,4 +314,11 @@ nav .active {
   background-color: #D6DBF5;
 }
 
+@media (max-width: 1000px) {
+  .home, .protected-settings, .settings, .game {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */
