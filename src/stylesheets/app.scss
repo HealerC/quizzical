@@ -7,14 +7,23 @@ $blue: #4D5B9E;
 @use 'settings';
 @use 'game';
 
-//
+// General instantiation of elements and body
 * {
   box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Karla -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: $backgroundColor;
 }
 
 // Navbar
 nav {
-  font-weight: bold;
   width: 100%;
   margin: auto;
   display: flex;
@@ -50,7 +59,7 @@ nav {
   padding: 0.2em 0em;
   color: $dark-blue;
 }
-.container:not(:last-child) {
+.container:not(:last-child) {   // Space between the options
   margin-right: 0.5rem;
 }
 .mark {
@@ -61,7 +70,7 @@ nav {
   height: 100%;
   z-index: -1;
   background-color: transparent;
-  border: 1px solid #4D5B9E;
+  border: 1px solid $blue;
   border-radius: 1rem;
   transition: background-color 0.1s linear;
 }
@@ -73,7 +82,6 @@ nav {
   -moz-appearance: none;
   appearance: none;
 }
-
 
 .container:hover input~.mark {
   background-color: #D6DBF5;

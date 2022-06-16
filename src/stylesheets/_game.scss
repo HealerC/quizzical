@@ -41,19 +41,19 @@ $incorrect-red: #F8BCBC;
     }
 
   }
-  .question:not(:last-child) {
+  .question:not(:last-child) {  // Put a line dividing a question from the next
     border-bottom: 1px solid $light-blue;
   }
 
   footer {
     
-    h3 {
+    h3 {        // Fixed Username
       position: fixed;
       top: 0;
       left: 2rem;
     }
 
-    .info {
+    .info {   // Score and 'play-again' button
       display: flex;
       justify-content: center;
 
@@ -64,11 +64,12 @@ $incorrect-red: #F8BCBC;
       }
     }
 
-    button[type="submit"] {
+    button[type="submit"] {   // Submit game ('Check answers')
       display: block;
       margin: auto;
     }
 
+    /* Submit game and play a new game */
     button {
       @extend %big-blue; 
     }
@@ -78,7 +79,8 @@ $incorrect-red: #F8BCBC;
     button:active {
       @extend %big-blue-active;
     }
-    .remaining-time {
+
+    .remaining-time {     // Fixed time remaining
       position: fixed;
       bottom: 0;
       left: 2rem;

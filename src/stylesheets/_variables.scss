@@ -4,6 +4,9 @@ $light-blue: #D6DBF5;
 $blue: #4D5B9E;
 $outline-color: #F5F7FB;
 
+/* Big blue button used to begin the game in /home,
+start the game in /settings, submit the game and start and new game
+in /game */
 %big-blue {
   background-color: $blue;
   color: $light-blue;

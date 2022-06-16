@@ -9,7 +9,6 @@ $outline-color: #F5F7FB;
 .settings {
   width: 100%;
   margin: auto;
-  font-weight: bold;
 
   input[type="text"], select {
     display: block;
@@ -34,7 +33,7 @@ $outline-color: #F5F7FB;
 
   fieldset {
     margin: 1em 0;
-    border: none;
+    border: none;   // Removing the default 'fieldset/legend' styling
     border-bottom: 1px solid $light-blue;
   }
 
@@ -53,8 +52,10 @@ $outline-color: #F5F7FB;
   .radio-container {
     display: flex;
     justify-content: stretch;
+    
     .container {
-      flex-grow: 1;
+      flex-grow: 1; // Let the radio buttons fill up the space
+      font-weight: bold;
     }
   }
 
@@ -63,16 +64,19 @@ $outline-color: #F5F7FB;
     fieldset {
       flex-grow: 1;
     }
-    fieldset:first-child {
+    fieldset:first-child {  // Put a divider between the radio groups
       border-right: 1px solid $light-blue;
     }
   }
 }
+
 .loading {
   position: fixed;
   bottom: 1rem;
   left: 2rem;
 }
+
+// The component that displays if a game is ongoing
 .protected-settings {
   width: 100%;
   margin: auto;
