@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
-import { getGame } from "../components/controllers";
 import { nanoid } from "nanoid";
+
+import Loading from "../components/Loading";
 import { QuizzicalContext } from "../components/QuizzicalContext";
+import { getGame } from "../components/controllers";
 const API_BASE_URL = "https://opentdb.com/api.php";
 const API_CATEGORIES = "https://opentdb.com/api_category.php";
 
-const Settings = ({ setGame }) => {
+const Settings = () => {
   const [loading, setLoading] = React.useState(false);
   const [settings, setSettings] = React.useState({
     username: "",
@@ -20,10 +21,11 @@ const Settings = ({ setGame }) => {
   const { state, dispatch } = React.useContext(QuizzicalContext);
 
   const navigate = useNavigate();
+
   // Get the categories of the quiz
   React.useEffect(() => {
-    getCategories();
     getLastSetup();
+    getCategories();
   }, [state.settings]);
 
   const getLastSetup = () => {
@@ -34,14 +36,16 @@ const Settings = ({ setGame }) => {
   };
   const getCategories = async () => {
     setLoading(true);
+
     const storedCategories = state.settings.categories;
-    console.log(storedCategories);
+
     if (storedCategories.length > 0) {
       setCategories(storedCategories);
-      setLoading(false);
-      console.log("no need to go far");
+      setLoading(false); // We got the categories from local storage
       return;
     }
+
+    /* No category in local storage. Maybe a first timer */
     try {
       const response = await fetch(API_CATEGORIES);
       if (!response.ok) {
@@ -52,9 +56,12 @@ const Settings = ({ setGame }) => {
       if (!result.trivia_categories) {
         throw new Error("There is an error with received result");
       }
-      console.log("we needed to go far");
+
+      /* Basically add the category to the state so it can be
+      eventually saved in local storage. Also set it in this program */
       dispatch({ type: "SET_CATEGORIES", payload: result.trivia_categories });
       setCategories(result.trivia_categories);
+
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -64,15 +71,19 @@ const Settings = ({ setGame }) => {
 
   function handleChange(event) {
     const name = event.target.name;
+    // I have actuallly forgotten exactly why I did this
     const value = Number(event.target.value) || event.target.value;
     setSettings((settings) => ({ ...settings, [name]: value }));
   }
+
   async function handleSubmit(event) {
     event.preventDefault();
     if (!settings.username) {
-      return;
+      return; // Don't submit if user did not input username
     }
+
     setLoading(true);
+
     const url =
       `${API_BASE_URL}?amount=${settings.questionCount}` +
       (settings.difficulty !== `any`
@@ -91,14 +102,13 @@ const Settings = ({ setGame }) => {
           game,
         },
       });
-      // setGame({ username: settings.username, game, url, time: settings.time });
-      setLoading(false);
       dispatch({ type: "SAVE_PREV_SETTINGS", payload: settings });
+
+      setLoading(false);
       navigate("/game");
     }
   }
-  // console.log(settings);
-  console.log("settings", state, dispatch);
+
   return (
     <section className="settings">
       <form onSubmit={handleSubmit}>
@@ -113,6 +123,7 @@ const Settings = ({ setGame }) => {
             required
           />
         </fieldset>
+
         <fieldset name="difficulty">
           <legend>Difficulty</legend>
           <div className="radio-container">
@@ -166,6 +177,9 @@ const Settings = ({ setGame }) => {
             </label>
           </div>
         </fieldset>
+
+        {/* So the question count and the time could 
+        be arranged in a single line */}
         <div className="numeric-radio-group">
           <fieldset name="question-count">
             <legend>No. of questions</legend>
@@ -252,36 +266,25 @@ const Settings = ({ setGame }) => {
           </fieldset>
         </div>
 
-        {categories ? (
-          <fieldset>
-            <label htmlFor="category">Category</label>
-            <select
-              name="category"
-              value={settings.category}
-              id="category"
-              onChange={handleChange}
-            >
-              <option value="0">Any</option>
-              {categories.map((category) => (
+        {/* Show all the different categories only if it can be gotten (either 
+          from the local storage or api) or select from any category */}
+        <fieldset>
+          <label htmlFor="category">Category</label>
+          <select
+            name="category"
+            value={settings.category}
+            id="category"
+            onChange={handleChange}
+          >
+            <option value="0">Any</option>
+            {categories &&
+              categories.map((category) => (
                 <option key={nanoid()} value={category.id}>
                   {category.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
-        ) : (
-          <fieldset>
-            <label htmlFor="category">Category</label>
-            <select
-              name="category"
-              value={settings.category}
-              id="category"
-              onChange={handleChange}
-            >
-              <option value="0">Any</option>
-            </select>
-          </fieldset>
-        )}
+          </select>
+        </fieldset>
 
         <button type="submit">Start Quiz</button>
       </form>
