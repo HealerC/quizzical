@@ -15,7 +15,7 @@ const Loading = () => {
   };
 
   return (
-    <aside>
+    <aside className="loading">
       Loading<span className="dots">{dots}</span>
     </aside>
   );

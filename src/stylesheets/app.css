@@ -130,6 +130,12 @@ body {
   border-right: 1px solid #D6DBF5;
 }
 
+.loading {
+  position: fixed;
+  bottom: 1rem;
+  left: 2rem;
+}
+
 .protected-settings {
   width: 100%;
   margin: auto;

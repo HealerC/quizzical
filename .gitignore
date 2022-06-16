@@ -25,3 +25,6 @@ yarn-error.log*
 # aside
 /project
 /public/Thumbs.db
+
+# sass compiler mapping
+src/stylesheets/app.css.map

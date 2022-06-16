@@ -68,7 +68,11 @@ $outline-color: #F5F7FB;
     }
   }
 }
-
+.loading {
+  position: fixed;
+  bottom: 1rem;
+  left: 2rem;
+}
 .protected-settings {
   width: 100%;
   margin: auto;
