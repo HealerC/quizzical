@@ -2,10 +2,10 @@ import React from "react";
 import { nanoid } from "nanoid";
 
 const Question = ({ trivia, handleChange, status }) => {
-  const showCorrectAnswer = () => {
-    if (trivia.selected === trivia.correct_answer) {
+  const showCorrectAnswer = (option) => {
+    if (option === trivia.correct_answer) {
       return <span className="mark correct"></span>;
-    } else {
+    } else if (option === trivia.selected) {
       return <span className="mark incorrect"></span>;
     }
   };
@@ -25,8 +25,8 @@ const Question = ({ trivia, handleChange, status }) => {
                 checked={option === trivia.selected}
               />
 
-              {status === 1 && option === trivia.selected ? (
-                showCorrectAnswer()
+              {status === 1 ? (
+                showCorrectAnswer(option)
               ) : (
                 <span className="mark"></span>
               )}

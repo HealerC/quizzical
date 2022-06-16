@@ -1,4 +1,4 @@
-.settings button, .home button {
+.game footer button, .settings button, .home button {
   background-color: #4D5B9E;
   color: #D6DBF5;
   padding: 0.5em 1em;
@@ -8,11 +8,11 @@
   border-radius: 1em;
 }
 
-.settings button:hover, .home button:hover {
+.game footer button:hover, .settings button:hover, .home button:hover {
   background-color: #293264;
 }
 
-.settings button:active, .home button:active {
+.game footer button:active, .settings button:active, .home button:active {
   color: #F5F7FB;
 }
 
@@ -187,12 +187,37 @@ body {
 }
 .game .question .mark.correct {
   background-color: #94D7A2;
+  border-color: #94D7A2;
 }
 .game .question .mark.incorrect {
   background-color: #F8BCBC;
+  border-color: #F8BCBC;
 }
 .game .question:not(:last-child) {
   border-bottom: 1px solid #D6DBF5;
+}
+.game footer h3 {
+  position: fixed;
+  top: 0;
+  left: 2rem;
+}
+.game footer .info {
+  display: flex;
+  justify-content: center;
+}
+.game footer .info p {
+  font-weight: bold;
+  color: #4D5B9E;
+  margin-right: 2rem;
+}
+.game footer button[type=submit] {
+  display: block;
+  margin: auto;
+}
+.game footer .remaining-time {
+  position: fixed;
+  bottom: 0;
+  left: 2rem;
 }
 
 @media (min-width: 1000px) {

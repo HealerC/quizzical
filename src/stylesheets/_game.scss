@@ -6,6 +6,8 @@ $outline-color: #F5F7FB;
 $correct-green: #94D7A2;
 $incorrect-red: #F8BCBC;
 
+@use 'variables';
+
 .game {
   width: 100%;
   margin: auto;
@@ -28,17 +30,59 @@ $incorrect-red: #F8BCBC;
         margin-bottom: 0.5rem;
       }
     }
-    
+
     .mark.correct {
       background-color: $correct-green;
+      border-color: $correct-green;
     }
     .mark.incorrect {
       background-color: $incorrect-red;
+      border-color: $incorrect-red;
     }
 
   }
   .question:not(:last-child) {
     border-bottom: 1px solid $light-blue;
+  }
+
+  footer {
+    
+    h3 {
+      position: fixed;
+      top: 0;
+      left: 2rem;
+    }
+
+    .info {
+      display: flex;
+      justify-content: center;
+
+      p {
+        font-weight: bold;
+        color: $blue;
+        margin-right: 2rem;
+      }
+    }
+
+    button[type="submit"] {
+      display: block;
+      margin: auto;
+    }
+
+    button {
+      @extend %big-blue; 
+    }
+    button:hover {
+      @extend %big-blue-hover;
+    }
+    button:active {
+      @extend %big-blue-active;
+    }
+    .remaining-time {
+      position: fixed;
+      bottom: 0;
+      left: 2rem;
+    }
   }
 }
 

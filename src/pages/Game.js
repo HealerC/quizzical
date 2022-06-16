@@ -149,19 +149,23 @@ const Game = ({ game }) => {
       </form>
       <footer>
         <h3>{state.gameDetails.username}</h3>
-        <button type="submit" form="game-form">
-          Check answers
-        </button>
+        {state.gameDetails.game.status !== 1 && (
+          <button type="submit" form="game-form">
+            Check answers
+          </button>
+        )}
         {state.gameDetails.game.status === 1 && (
-          <section>
-            <p className="info">
+          <section className="info">
+            <p>
               You got {state.gameDetails.game.score}/
               {state.gameDetails.game.quiz.length} correctly
             </p>
             <button onClick={handleNewGameClick}>Play again</button>
           </section>
         )}
-        <p>{TimeConverter.millisToMinuteSecond(time)}</p>
+        <p className="remaining-time">
+          {TimeConverter.millisToMinuteSecond(time)}
+        </p>
       </footer>
     </section>
   );
