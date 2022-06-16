@@ -1,23 +1,24 @@
 import React from "react";
 import { QuizzicalContext } from "../components/QuizzicalContext";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ProtectedSettings = ({ children }) => {
-  const { state, dispatch } = React.useContext(QuizzicalContext);
+  const { state } = React.useContext(QuizzicalContext);
   const [showChildren, setShowChildren] = React.useState(false);
-  const gameDetails = state.gameDetails;
   const navigate = useNavigate();
+
+  const gameDetails = state.gameDetails;
 
   const handleClick = (event) => {
     const id = event.target.id;
     if (id === "continue") {
-      //   return <Navigate to="/game" />;
       navigate("/game");
     } else {
-      setShowChildren(true);
+      setShowChildren(true); // Show settings if user wants to quit previous game
     }
   };
+
+  /* Show settings only if a game isn't ongoing */
   if ([0, 0.5].indexOf(gameDetails.game.status) >= 0) {
     return (
       <Info
