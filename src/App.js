@@ -12,7 +12,7 @@ import { QuizzicalContext } from "./components/QuizzicalContext";
 import "./stylesheets/app.css";
 
 const App = () => {
-  const { state, dispatch } = React.useContext(QuizzicalContext);
+  const { dispatch } = React.useContext(QuizzicalContext);
 
   React.useEffect(() => {
     try {
