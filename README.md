@@ -6,5 +6,7 @@ Leaderboard is located in `window.localStorage` (if any, *bummer!* :man_facepalm
 
 ## `Shout outs`
 [https://opentdb.com/](open trivia database), the API which the app is based on.
+
 [https://www.npmjs.com/package/nanoid](nanoid) for providing ids and react 'key'
+
 [https://www.npmjs.com/package/tiny-timer](tiny-timer) for providing the timing countdown used for the quiz
