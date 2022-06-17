@@ -73,4 +73,4 @@ const TimeConverter = {
   },
 };
 
-module.exports = { getGame, TimeConverter };
+export { getGame, TimeConverter };
